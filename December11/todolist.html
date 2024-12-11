@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>To do List</title>
+   <script>
+    function addToList() {
+        let userInput = document.getElementById("text1").value;
+        let listToAdd = document.getElementById("myUL");
+        let newListItem = document.createElement("li");
+        let newPara = document.createElement("p");
+        newPara.setAttribute('id', userInput);
+        newPara.innerText=userInput;
+        listToAdd.append(newListItem);
+        newListItem.appendChild(newPara);
+        newListItem.addEventListener('click', completedTask);
+        
+        let deleteCheckbox = document.createElement("input");
+        deleteCheckbox.style.marginLeft = '2px';
+        deleteCheckbox.setAttribute("type", "button");
+        deleteCheckbox.setAttribute("value", "Remove");
+        deleteCheckbox.addEventListener("click", deleteItem);
+        newListItem.appendChild(deleteCheckbox);
+
+        let editButton = document.createElement('input');
+        editButton.style.marginLeft = '2px';
+        editButton.setAttribute('type', "button");
+        editButton.setAttribute('name', userInput);
+        editButton.setAttribute("value", 'Edit');
+        newListItem.appendChild(editButton);
+        editButton.addEventListener("click", editItem);
+        document.getElementById('text1').value = "";
+    }
+
+    function editItem() {
+        event.stopImmediatePropagation();
+        let favDialogBox = document.getElementById('favDialog');
+        favDialogBox.showModal();
+        document.getElementById('confirmBtn').addEventListener("click", () => {
+            event.preventDefault();
+            favDialogBox.close(document.getElementById("newvalue").value);
+        });
+        favDialogBox.addEventListener("close", () => {
+            if (favDialogBox.returnValue !== "") {
+                document.getElementById(this.getAttribute('name')).innerText= favDialogBox.returnValue;
+                document.getElementById(this.getAttribute('name')).setAttribute('id', favDialogBox.returnValue);
+                this.setAttribute('name', favDialogBox.returnValue);
+            }
+            document.getElementById("newvalue").value = "";
+        });
+    }
+
+    function deleteItem() {
+        this.parentElement.remove();
+    }
+
+    function completedTask() {
+        this.style.textDecoration = "line-through";
+    }
+
+   </script>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <input type="text" id="text1"/>
+    <button onclick="addToList()">Add to List</button>
+    <hr/>
+<ul id="myUL">
+</ul>
+<dialog id="favDialog">
+    <form>
+      <p>
+        <label>
+          New value:
+          <input id="newvalue" type="text">
+        </label>
+      </p>
+      <div>
+        <button value="" formmethod="dialog">Cancel</button>
+        <button id="confirmBtn" value="default">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

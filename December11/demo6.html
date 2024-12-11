@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Listeners</title>
+</head>
+<body>
+    <h1 id="myh1">This is a Heading</h1>
+    <button id="btn1">Click Me</button>
+    <script>
+        var btn01 = document.getElementById("btn1");
+        btn01.addEventListener("click", onClickHandler);
+        function onClickHandler() {
+            
+             document.getElementById("myh1").innerHTML="Heading Modified"
+        }
+    </script>
+</body>
+</html>

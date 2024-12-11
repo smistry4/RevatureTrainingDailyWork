@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assignment</title>
+    <script>
+        function handleClick(){
+            let para = document.querySelectorAll("p");
+            for (i = 0; i < para.length; i++) {
+                para[i].style.backgroundColor="red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>This is an Assignment</h2>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <button onclick="handleClick()">Click Me</button>
+</body>
+</html>
