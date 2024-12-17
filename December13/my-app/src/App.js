@@ -8,13 +8,22 @@ import AxiosGetDemo from './components/axiosdemo/AxiosGetDemo';
 import Navbar from './Navbar';
 import {BrowserRouter as Router,Routes, Route} from 'react-router-dom'
 import ToDoList from './components/todolist/ToDoList';
+import ButtonClickDemo from './components/refsdemo/ButtonClickDemo';
+import ControlledComponent from './components/refsdemo/ControlledComponent';
+import MyContext from './components/contextdemo/MyContext';
 
 function App() {
+
+  const sharedData = "This is some shared data";
+
+
   return (
-    
+    <MyContext.Provider value={sharedData}>
     <Router>
       <div className="App">
         <Navbar/>
+        <ButtonClickDemo/>
+        <ControlledComponent/>
       </div>
       <Routes>
         <Route path='/hello' element={<Hello/>}></Route>
@@ -25,7 +34,7 @@ function App() {
       </Routes>
     </Router>
     
-     
+    </MyContext.Provider>
   );
 }
 
